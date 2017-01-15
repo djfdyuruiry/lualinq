@@ -1,3 +1,0 @@
-]===])
-
-fw_loadModule('grimqobjects')

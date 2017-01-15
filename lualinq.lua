@@ -28,10 +28,10 @@
 -- ------------------------------------------------------------------------
 
 -- how much log information is printed: 3 => verbose, 2 => info, 1 => only warning and errors, 0 => only errors, -1 => silent
-LOG_LEVEL = 1
+local LOG_LEVEL = 1
 
 -- prefix for the printed logs
-LOG_PREFIX = "LuaLinq: "
+local LOG_PREFIX = "LuaLinq: "
 
 
 
@@ -41,26 +41,26 @@ LOG_PREFIX = "LuaLinq: "
 -- DEBUG TRACER
 -- ============================================================
 
-LIB_VERSION_TEXT = "1.5.2"
-LIB_VERSION = 152
+local LIB_VERSION_TEXT = "1.5.2"
+local LIB_VERSION = 152
 
-function setLogLevel(level)
+local function setLogLevel(level)
 	LOG_LEVEL = level;
 end
 
-function _log(level, prefix, text)
+local function _log(level, prefix, text)
 	if (level <= LOG_LEVEL) then
 		print(prefix .. LOG_PREFIX .. text)
 	end
 end
 
-function logq(self, method)
+local function logq(self, method)
 	if (LOG_LEVEL >= 3) then
 		logv("after " .. method .. " => " .. #self.m_Data .. " items : " .. _dumpData(self))
 	end
 end
 
-function _dumpData(self)
+local function _dumpData(self)
 	local items = #self.m_Data
 	local dumpdata = "q{ "
 	
@@ -84,19 +84,19 @@ end
 
 
 
-function logv(txt)
+local function logv(txt)
 	_log(3, "[..] ", txt)
 end
 
-function logi(txt)
+local function logi(txt)
 	_log(2, "[ii] ", txt)
 end
 
-function logw(txt)
+local function logw(txt)
 	_log(1, "[W?] ", txt)
 end
 
-function loge(txt)
+local function loge(txt)
 	_log(0, "[E!] ", txt)
 end
 
@@ -105,62 +105,105 @@ end
 -- CONSTRUCTOR
 -- ============================================================
 
+local from
+local fromArray
+local fromArrayInstance
+local fromDictionary
+local fromIterator
+local fromIteratorsArray
+local fromNothing
+local fromSet
+local _all
+local _any
+local _average
+local _concat
+local _contains
+local _count
+local _distinct 
+local _dump
+local _except
+local _exceptby
+local _first
+local _foreach
+local _foreach
+local _intersection
+local _intersectionby
+local _last
+local _map
+local _max
+local _min
+local _random
+local _select
+local _selectMany
+local _skip
+local _sum
+local _take
+local _toArray
+local _toDictionary
+local _toIterator
+local _toTuple
+local _union
+local _where
+local _whereIndex
+local _xmap
+local _zip
+
 -- [private] Creates a linq data structure from an array without copying the data for efficiency
-function _new_lualinq(method, collection)
+local function _new_lualinq(method, collection)
 	local self = { }
 	
 	self.classid_71cd970f_a742_4316_938d_1998df001335 = 2
 	
 	self.m_Data = collection
 	
-	self.concat = _concat
-	self.select = _select
-	self.selectMany = _selectMany
-	self.where = _where
-	self.whereIndex = _whereIndex
-	self.take = _take
-	self.skip = _skip
-	self.zip = _zip
+	self.concat         = _concat
+	self.select         = _select
+	self.selectMany     = _selectMany
+	self.where          = _where
+	self.whereIndex     = _whereIndex
+	self.take           = _take
+	self.skip           = _skip
+	self.zip            = _zip
 	
-	self.distinct = _distinct 
-	self.union = _union
-	self.except = _except
-	self.intersection = _intersection
-	self.exceptby = _exceptby
+	self.distinct       = _distinct 
+	self.union          = _union
+	self.except         = _except
+	self.intersection   = _intersection
+	self.exceptby       = _exceptby
 	self.intersectionby = _intersectionby
-	self.exceptBy = _exceptby
+	self.exceptBy       = _exceptby
 	self.intersectionBy = _intersectionby
-
-	self.first = _first
-	self.last = _last
-	self.min = _min
-	self.max = _max
-	self.random = _random
-
-	self.any = _any
-	self.all = _all
-	self.contains = _contains
-
-	self.count = _count
-	self.sum = _sum
-	self.average = _average
-
-	self.dump = _dump
 	
-	self.map = _map
-	self.foreach = _foreach
-	self.xmap = _xmap
-
-	self.toArray = _toArray
-	self.toDictionary = _toDictionary
-	self.toIterator = _toIterator
-	self.toTuple = _toTuple
-
+	self.first          = _first
+	self.last           = _last
+	self.min            = _min
+	self.max            = _max
+	self.random         = _random
+	
+	self.any            = _any
+	self.all            = _all
+	self.contains       = _contains
+	
+	self.count          = _count
+	self.sum            = _sum
+	self.average        = _average
+	
+	self.dump           = _dump
+	
+	self.map            = _map
+	self.foreach        = _foreach
+	self.xmap           = _xmap
+	
+	self.toArray        = _toArray
+	self.toDictionary   = _toDictionary
+	self.toIterator     = _toIterator
+	self.toTuple        = _toTuple
+	
 	-- shortcuts
-	self.each = _foreach
-	self.intersect = _intersection
-	self.intersectby = _intersectionby
-	self.intersectBy = _intersectionby
+	self.each           = _foreach
+	self.intersect      = _intersection
+	self.intersectby    = _intersectionby
+	self.intersectBy    = _intersectionby
 	
 	
 	logq(self, "from")
@@ -659,3 +702,14 @@ function _average(self, selector)
 	end
 end
 
+return {
+	setLogLevel        = setLogLevel,
+	from               = from,
+	fromArrayInstance  = fromArrayInstance,
+	fromArray          = fromArray,
+	fromDictionary     = fromDictionary,
+	fromIterator       = fromIterator,
+	fromIteratorsArray = fromIteratorsArray,
+	fromSet            = fromSet,
+	fromNothing        = fromNothing,
+}
