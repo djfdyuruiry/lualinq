@@ -1,8 +1,8 @@
 package = "lualinq"
-version = "1.6-0"
+version = "1.6-1"
 source = {
-    url = "https://github.com/djfdyuruiry/lualinq",
-    tag = "1.6.0"
+    url = "git://github.com/djfdyuruiry/lualinq",
+    tag = "1.6.1"
 }
 description = {
    summary = "Lightweight library which allows functional querying and transformation of lua arrays and objects",
