@@ -44,8 +44,8 @@ local LOG_PREFIX = "LuaLinq: "
 -- DEBUG TRACER
 -- ============================================================
 
-local LIB_VERSION_TEXT = "1.5.2"
-local LIB_VERSION = 152
+local LIB_VERSION_TEXT = "1.6.0"
+local LIB_VERSION = 160
 
 local function setLogLevel(level)
 	LOG_LEVEL = level;
