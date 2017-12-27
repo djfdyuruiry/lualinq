@@ -27,6 +27,9 @@
 -- OF THE POSSIBILITY OF SUCH DAMAGE.
 -- ------------------------------------------------------------------------
 
+-- support lua 5.3
+local unpack = table.unpack and table.unpack or unpack
+
 -- how much log information is printed: 3 => verbose, 2 => info, 1 => only warning and errors, 0 => only errors, -1 => silent
 local LOG_LEVEL = 1
 
